@@ -1,0 +1,21 @@
+You have successfully created an Atlassian Plugin!
+
+Here are the SDK commands you'll use immediately:
+
+* atlas-run   -- installs this plugin into the product and starts it on localhost
+* atlas-debug -- same as atlas-run, but allows a debugger to attach at port 5005
+* atlas-help  -- prints description for all commands in the SDK
+
+Full documentation is always available at:
+
+https://developer.atlassian.com/display/DOCS/Introduction+to+the+Atlassian+Plugin+SDK
+
+Useful resources:
+
+* [Bitbucket Server Developer - Responding to application events](https://developer.atlassian.com/server/bitbucket/how-tos/responding-to-application-events/)
+* [Bitbucket SDK - Working with the SDK](https://developer.atlassian.com/server/framework/atlassian-sdk/working-with-the-sdk/)
+* [Bitbucket SDK docs - RepositoryCloneEvent](https://docs.atlassian.com/bitbucket-server/javadoc/7.0.1/api/com/atlassian/bitbucket/event/repository/RepositoryCloneEvent.html)
+* [Shared Access Layer - Services](https://developer.atlassian.com/server/framework/atlassian-sdk/sal-services/)
+* [SAL SDK docs - Request](https://docs.atlassian.com/DAC/javadoc/sal/2.6/reference/com/atlassian/sal/api/net/Request.html)
+* [SAL 3.0 Upgrade Guide](https://developer.atlassian.com/server/framework/atlassian-sdk/sal-3-0-upgrade-guide/)
+* [Atlassian Community - REST requests from a custom plugin](https://community.atlassian.com/t5/Answers-Developer-Questions/What-is-the-recommended-way-to-send-REST-requests-from-a-custom/qaq-p/568227)
