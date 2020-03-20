@@ -19,3 +19,4 @@ Useful resources:
 * [SAL SDK docs - Request](https://docs.atlassian.com/DAC/javadoc/sal/2.6/reference/com/atlassian/sal/api/net/Request.html)
 * [SAL 3.0 Upgrade Guide](https://developer.atlassian.com/server/framework/atlassian-sdk/sal-3-0-upgrade-guide/)
 * [Atlassian Community - REST requests from a custom plugin](https://community.atlassian.com/t5/Answers-Developer-Questions/What-is-the-recommended-way-to-send-REST-requests-from-a-custom/qaq-p/568227)
+* [Atlassian AUI - Soy template components](https://bitbucket.org/atlassian/aui/src/6a8e37f85a07952cc290503f54d85ff5bebc8783/src/soy/?at=5.10.x)

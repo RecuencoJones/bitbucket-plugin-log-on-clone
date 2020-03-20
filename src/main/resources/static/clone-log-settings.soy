@@ -1,0 +1,87 @@
+{namespace com.recuencojones.bitbucket.log.page}
+
+/**
+ * Settings form wrapper
+ * @param repository
+ * @param? xsrfTokenName
+ * @param? xsrfTokenValue
+ */
+{template .repoSettingsPanel}
+<html>
+  <head>
+    <meta name="decorator" content="bitbucket.repository.settings">
+    <meta name="projectKey" content="{$repository.project.key}">
+    <meta name="repositorySlug" content="{$repository.slug}">
+    <meta name="activeTab" content="repository-settings-log-on-clone-panel">
+    <title>{{ getText('bitbucket.web.repository.log-on-clone.title', $repository.project.name, $repository.name) }}</title>
+  </head>
+  <body>
+    {call aui.page.pageHeader}
+      {param content}
+        {call aui.page.pageHeaderMain}
+          {param content}
+            <h2>{ getText('bitbucket.web.repository.log-on-clone.heading') }</h2>
+          {/param}
+        {/call}
+      {/param}
+    {/call}
+    {call aui.form.form}
+      {param action: '' /}
+      {param method: 'POST' /}
+      {param id: 'log-on-clone-settings-form' /}
+      {param content}
+        {let $xsrfTokenName: $xsrfTokenName ? $xsrfTokenName : ($ij.xsrfTokenName ? $ij.xsrfTokenName : null) /}
+        {if $xsrfTokenName}
+        <input type="hidden"
+               name="{$xsrfTokenName}"
+               value="{$xsrfTokenValue ? $xsrfTokenValue : ($ij.xsrfTokenValue ? $ij.xsrfTokenValue : null)}">
+        {/if}
+        {call .settingsContent /}
+      {/param}
+    {/call}
+    <script>
+      require('plugin/log-on-clone/repository-settings').onReady();
+    </script>
+  </body>
+</html>
+{/template}
+
+/**
+ * Actual settings form
+ */
+{template .settingsContent}
+  {call aui.form.fieldGroup}
+    {param content}
+      {call aui.form.label}
+        {param isRequired: true /}
+        {param forField: 'url' /}
+        {param content: getText('bitbucket.web.repository.log-on-clone.setting.url.label') /}
+      {/call}
+      {call aui.form.input}
+        {param id: 'url' /}
+        {param name: 'url' /}
+        {param type: 'url' /}
+        {param placeholderText: getText('bitbucket.web.repository.log-on-clone.setting.url.placeholder') /}
+        {param extraAttributes}
+          pattern="https?://.*"
+        {/param}
+      {/call}
+      {call aui.form.fieldDescription}
+        {param text: getText('bitbucket.web.repository.log-on-clone.setting.url.description') /}
+      {/call}
+    {/param}
+  {/call}
+  {call aui.form.buttons}
+    {param content}
+
+      {call aui.form.submit}
+        {param id: 'log-on-clone-settings-form-submit' /}
+        {param type: 'primary' /}
+        {param text: getText('bitbucket.web.button.save') /}
+        {param extraAttributes}
+          accesskey="s"
+        {/param}
+      {/call}
+    {/param}
+  {/call}
+{/template}

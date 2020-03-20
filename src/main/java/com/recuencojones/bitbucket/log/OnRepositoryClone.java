@@ -4,8 +4,13 @@ import com.atlassian.bitbucket.event.repository.RepositoryCloneEvent;
 import com.atlassian.bitbucket.repository.Repository;
 import com.atlassian.event.api.EventListener;
 import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
+
 import com.atlassian.sal.api.net.*;
+import com.atlassian.sal.api.pluginsettings.PluginSettings;
+import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
+
 import com.google.gson.Gson;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,13 +24,20 @@ public class OnRepositoryClone {
 	@ComponentImport
 	private final RequestFactory requestFactory;
 
+	@ComponentImport
+	private final PluginSettingsFactory pluginSettingsFactory;
+
 	@Inject
-	public OnRepositoryClone(RequestFactory requestFactory) {
+	public OnRepositoryClone(
+		final RequestFactory requestFactory,
+		final PluginSettingsFactory pluginSettingsFactory
+	) {
 		this.requestFactory = requestFactory;
+		this.pluginSettingsFactory = pluginSettingsFactory;
 	}
 
 	@EventListener
-	public void onCloneEvent(RepositoryCloneEvent cloneEvent) {
+	public void onCloneEvent(final RepositoryCloneEvent cloneEvent) {
 		final Repository repository = cloneEvent.getRepository();
 		final String projectKey = repository.getProject().getKey();
 		final String repositorySlug = repository.getSlug();

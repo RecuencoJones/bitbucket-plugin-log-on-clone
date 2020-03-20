@@ -1,0 +1,8 @@
+.button-spinner {
+  display: inline-block;
+  position: relative;
+  margin-left: 8px;
+  height: 20px;
+  width: 20px;
+  top: 5px;
+}
