@@ -84,15 +84,18 @@ define('plugin/log-on-clone/repository-settings', [
         url: resourceUrl('settings'),
         type: 'GET'
       })
-      .then(function() {
+      .then(function(response) {
+        if (response) {
+          setValue(response.url);
+        }
+
         setInputEnabled(true);
         setSubmitEnabled(true);
-        setValue('https://en6qhxx7a3ksl.x.pipedream.net');
       });
   }
 
   exports.onReady = function() {
-    $(document).ready(() => {
+    $(document).ready(function() {
       init();
     });
   };

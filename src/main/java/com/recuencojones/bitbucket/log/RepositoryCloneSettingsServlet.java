@@ -29,7 +29,7 @@ import java.io.IOException;
 
 import java.util.Map;
 
-class RepositoryCloneSettingsServlet extends HttpServlet {
+public class RepositoryCloneSettingsServlet extends HttpServlet {
 	private static final Logger log = LoggerFactory.getLogger(RepositoryCloneSettingsServlet.class);
 
 	@ComponentImport

@@ -31,6 +31,11 @@
         <package>com.recuencojones.bitbucket.log.rest</package>
     </rest>
 
+    <ao key="ao-module">
+        <description>The module configuring the Active Objects service used by this plugin</description>
+        <entity>com.recuencojones.bitbucket.log.dao.RepositoryCloneSettings</entity>
+    </ao>
+
     <client-resource key="log-on-clone-serverside-resources">
         <directory location="/static/">
             <include>/**/*.soy</include>
