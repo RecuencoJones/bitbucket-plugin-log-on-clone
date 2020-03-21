@@ -1,56 +1,56 @@
 <atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
-    <plugin-info>
-        <description>${project.description}</description>
-        <version>${project.version}</version>
-        <vendor name="${project.organization.name}" url="${project.organization.url}" />
-        <param name="atlassian-data-center-compatible">true</param>
-        <param name="plugin-icon">images/pluginIcon.png</param>
-        <param name="plugin-logo">images/pluginLogo.png</param>
-    </plugin-info>
+	<plugin-info>
+		<description>${project.description}</description>
+		<version>${project.version}</version>
+		<vendor name="${project.organization.name}" url="${project.organization.url}" />
+		<param name="atlassian-data-center-compatible">true</param>
+		<param name="plugin-icon">images/pluginIcon.png</param>
+		<param name="plugin-logo">images/pluginLogo.png</param>
+	</plugin-info>
 
-    <!-- add our i18n resource -->
-    <resource type="i18n" name="i18n" location="log-on-clone" />
+	<!-- add our i18n resource -->
+	<resource type="i18n" name="i18n" location="log-on-clone" />
 
-    <web-item key="repository-settings-log-on-clone-panel" name="Repository log on clone tab" weight="30" section="bitbucket.repository.settings.panel/repository-settings-addons-section">
-        <label key="bitbucket.web.repository.settings.tab.git">Log on clone</label>
-        <tooltip key="bitbucket.web.repository.settings.tab.git.tooltip">Log clone events to a remote service</tooltip>
-        <link>${navBuilder.pluginServlets().path('log-on-clone', $project.key, $repository.slug).buildRelNoContext()}</link>
-    </web-item>
+	<web-item key="repository-settings-log-on-clone-panel" name="Repository log on clone tab" weight="30" section="bitbucket.repository.settings.panel/repository-settings-addons-section">
+		<label key="bitbucket.web.repository.settings.tab.git">Log on clone</label>
+		<tooltip key="bitbucket.web.repository.settings.tab.git.tooltip">Log clone events to a remote service</tooltip>
+		<link>${navBuilder.pluginServlets().path('log-on-clone', $project.key, $repository.slug).buildRelNoContext()}</link>
+	</web-item>
 
-    <servlet key="log-on-clone-servlet" name="Log on Clone Servlet" class="com.recuencojones.bitbucket.log.RepositoryCloneSettingsServlet">
-        <url-pattern>/log-on-clone/*</url-pattern>
-    </servlet>
+	<servlet key="log-on-clone-servlet" name="Log on Clone Servlet" class="com.recuencojones.bitbucket.log.RepositoryCloneSettingsServlet">
+		<url-pattern>/log-on-clone/*</url-pattern>
+	</servlet>
 
-    <rest key="log-on-clone-rest" path="/log-on-clone" version="1.0">
-        <dispatcher>REQUEST</dispatcher>
-        <dispatcher>FORWARD</dispatcher>
-        <init-param>
-            <param-name>extension.filter.excludes</param-name>
-            <param-value>.*</param-value>
-        </init-param>
-        <package>com.recuencojones.bitbucket.log.rest</package>
-    </rest>
+	<rest key="log-on-clone-rest" path="/log-on-clone" version="1.0">
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<init-param>
+			<param-name>extension.filter.excludes</param-name>
+			<param-value>.*</param-value>
+		</init-param>
+		<package>com.recuencojones.bitbucket.log.rest</package>
+	</rest>
 
-    <ao key="ao-module">
-        <description>The module configuring the Active Objects service used by this plugin</description>
-        <entity>com.recuencojones.bitbucket.log.dao.RepositoryCloneSettings</entity>
-    </ao>
+	<ao key="ao-module">
+		<description>The module configuring the Active Objects service used by this plugin</description>
+		<entity>com.recuencojones.bitbucket.log.dao.RepositoryCloneSettings</entity>
+	</ao>
 
-    <client-resource key="log-on-clone-serverside-resources">
-        <directory location="/static/">
-            <include>/**/*.soy</include>
-        </directory>
-        <dependency>com.atlassian.bitbucket.server.bitbucket-web:server-soy-templates</dependency>
-    </client-resource>
+	<client-resource key="log-on-clone-serverside-resources">
+		<directory location="/static/">
+			<include>/**/*.soy</include>
+		</directory>
+		<dependency>com.atlassian.bitbucket.server.bitbucket-web:server-soy-templates</dependency>
+	</client-resource>
 
-    <client-resource key="repository-settings-log-on-clone-panel-resources">
-        <directory location="/static/">
-            <exclude>/**/*.soy</exclude>
-        </directory>
-        <context>bitbucket.page.repository.settings.log-on-clone</context>
-        <dependency>com.atlassian.bitbucket.server.bitbucket-web-api:navbuilder</dependency>
-        <dependency>com.atlassian.bitbucket.server.bitbucket-web-api:server</dependency>
-        <dependency>com.atlassian.bitbucket.server.bitbucket-web:global</dependency>
-        <dependency>com.atlassian.auiplugin:aui-experimental-spinner</dependency>
-    </client-resource>
+	<client-resource key="repository-settings-log-on-clone-panel-resources">
+		<directory location="/static/">
+			<exclude>/**/*.soy</exclude>
+		</directory>
+		<context>bitbucket.page.repository.settings.log-on-clone</context>
+		<dependency>com.atlassian.bitbucket.server.bitbucket-web-api:navbuilder</dependency>
+		<dependency>com.atlassian.bitbucket.server.bitbucket-web-api:server</dependency>
+		<dependency>com.atlassian.bitbucket.server.bitbucket-web:global</dependency>
+		<dependency>com.atlassian.auiplugin:aui-experimental-spinner</dependency>
+	</client-resource>
 </atlassian-plugin>

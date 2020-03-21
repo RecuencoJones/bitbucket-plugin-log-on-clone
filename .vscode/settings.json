@@ -1,0 +1,5 @@
+{
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "maven.executable.path": "/usr/local/Cellar/atlassian-plugin-sdk/8.0.16/libexec/apache-maven-3.5.4/bin/mvn",
+  "java.configuration.maven.userSettings": "/usr/local/Cellar/atlassian-plugin-sdk/8.0.16/libexec/apache-maven-3.5.4/conf/settings.xml"
+}

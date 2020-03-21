@@ -1,5 +1,5 @@
 .project
 .settings
-.vscode
+.classpath
 target
 tmp
