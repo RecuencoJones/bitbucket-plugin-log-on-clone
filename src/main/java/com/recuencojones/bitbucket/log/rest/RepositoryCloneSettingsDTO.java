@@ -3,8 +3,6 @@ package com.recuencojones.bitbucket.log.rest;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 
-import java.util.List;
-
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RepositoryCloneSettingsDTO {
 

@@ -5,9 +5,6 @@ import com.atlassian.activeobjects.external.ActiveObjects;
 import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
 import org.springframework.stereotype.Component;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import net.java.ao.DBParam;
 
 import javax.inject.Inject;

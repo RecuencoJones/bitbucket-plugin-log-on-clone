@@ -1,6 +1,5 @@
 package com.recuencojones.bitbucket.log.rest;
 
-import com.recuencojones.bitbucket.log.rest.*;
 import com.recuencojones.bitbucket.log.dao.*;
 
 import com.atlassian.bitbucket.repository.Repository;

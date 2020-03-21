@@ -8,11 +8,6 @@ import com.atlassian.bitbucket.repository.Repository;
 
 import com.atlassian.event.api.EventListener;
 
-import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
-
-import com.atlassian.sal.api.pluginsettings.PluginSettings;
-import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
