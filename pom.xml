@@ -172,6 +172,8 @@
 
                         <!-- Add package to export here -->
                         <Export-Package>
+                            com.recuencojones.bitbucket.log,
+                            com.recuencojones.bitbucket.log.dao,
                             com.recuencojones.bitbucket.log.api,
                         </Export-Package>
 

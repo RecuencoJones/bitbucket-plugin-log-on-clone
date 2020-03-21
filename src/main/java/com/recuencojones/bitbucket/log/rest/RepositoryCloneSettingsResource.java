@@ -57,6 +57,7 @@ public class RepositoryCloneSettingsResource {
 		if (settings != null) {
 			RepositoryCloneSettingsDTO settingsDTO = new RepositoryCloneSettingsDTO();
 
+			settingsDTO.setEnabled(settings.isEnabled());
 			settingsDTO.setURL(settings.getURL());
 
 			return ResponseFactory.ok(settingsDTO).build();
@@ -70,7 +71,7 @@ public class RepositoryCloneSettingsResource {
 		permissionValidationService.validateForRepository(repository, Permission.REPO_ADMIN);
 
 		log.info("Store logging url for repository {}/{}", repository.getProject().getKey(), repository.getSlug());
-		repositoryCloneSettingsDAO.save(repository.getId(), settings.getURL());
+		repositoryCloneSettingsDAO.save(repository.getId(), settings.getURL(), settings.getEnabled());
 
 		return ResponseFactory.ok().build();
 	}

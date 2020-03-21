@@ -1,5 +1,7 @@
 package com.recuencojones.bitbucket.log;
 
+import com.recuencojones.bitbucket.log.dao.*;
+
 import com.atlassian.bitbucket.event.repository.RepositoryDeletedEvent;
 
 import com.atlassian.bitbucket.repository.Repository;
@@ -17,26 +19,30 @@ import org.slf4j.LoggerFactory;
 import javax.inject.Named;
 import javax.inject.Inject;
 
-@Named("onRepositoryDeleted")
+@Named
 public class OnRepositoryDeleted {
 	private static final Logger log = LoggerFactory.getLogger(OnRepositoryClone.class);
 
-	@ComponentImport
-	private final PluginSettingsFactory pluginSettingsFactory;
+	private final RepositoryCloneSettingsDAO repositoryCloneSettingsDAO;
 
 	@Inject
 	public OnRepositoryDeleted(
-		final PluginSettingsFactory pluginSettingsFactory
+		final RepositoryCloneSettingsDAO repositoryCloneSettingsDAO
 	) {
-		this.pluginSettingsFactory = pluginSettingsFactory;
+		this.repositoryCloneSettingsDAO = repositoryCloneSettingsDAO;
 	}
 
 	@EventListener
 	public void onRepositoryDeleted(final RepositoryDeletedEvent event) {
-		deleteSettings(event.getRepository());
-	}
+		final Repository repository = event.getRepository();
+		final int repositoryID = repository.getId();
+		final String repositorySlug = repository.getSlug();
+		final String projectKey = repository.getProject().getKey();
+		final RepositoryCloneSettings settings = repositoryCloneSettingsDAO.get(repositoryID);
 
-	private void deleteSettings(final Repository repository) {
-
+		if (settings != null) {
+			log.debug("Repository {}/{} has log-on-clone settings, delete.", projectKey, repositorySlug);
+			repositoryCloneSettingsDAO.remove(settings);
+		}
 	}
 }

@@ -14,12 +14,19 @@ import static net.java.ao.schema.StringLength.UNLIMITED;
 public interface RepositoryCloneSettings extends Entity {
 
 	String REPO_ID_COLUMN = "REPO_ID";
+	String ENABLED_COLUMN = "ENABLED";
 	String URL_COLUMN = "URL";
 
 	@Indexed
 	@Accessor(REPO_ID_COLUMN)
 	@NotNull
 	int getId();
+
+	@Accessor(ENABLED_COLUMN)
+	boolean isEnabled();
+
+	@Mutator(ENABLED_COLUMN)
+	void setEnabled(boolean enabled);
 
 	@Accessor(URL_COLUMN)
 	@StringLength(UNLIMITED)

@@ -8,14 +8,25 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RepositoryCloneSettingsDTO {
 
-    @JsonProperty("url")
-    private String url;
+	@JsonProperty("enabled")
+	private boolean enabled;
 
-    public String getURL() {
-        return url;
-    }
+	@JsonProperty("url")
+	private String url;
 
-    public void setURL(String url) {
-        this.url = url;
-    }
+	public boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public String getURL() {
+		return url;
+	}
+
+	public void setURL(String url) {
+		this.url = url;
+	}
 }

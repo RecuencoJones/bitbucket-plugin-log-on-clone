@@ -11,11 +11,9 @@ import org.slf4j.LoggerFactory;
 import net.java.ao.DBParam;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import static com.recuencojones.bitbucket.log.dao.RepositoryCloneSettings.REPO_ID_COLUMN;
 
-@Named
 @Component
 public class RepositoryCloneSettingsDAO {
 	private static final String ID_QUERY = String.format("%s = ?", REPO_ID_COLUMN);
@@ -30,7 +28,7 @@ public class RepositoryCloneSettingsDAO {
 		this.ao = ao;
 	}
 
-	public RepositoryCloneSettings save(int repositoryID, String url) {
+	public RepositoryCloneSettings save(int repositoryID, String url, boolean enabled) {
 		RepositoryCloneSettings settings = find(repositoryID);
 
 		if (settings == null) {
@@ -41,6 +39,7 @@ public class RepositoryCloneSettingsDAO {
 		}
 
 		settings.setURL(url);
+		settings.setEnabled(enabled);
 		settings.save();
 
 		return settings;
@@ -53,6 +52,10 @@ public class RepositoryCloneSettingsDAO {
 	public void remove(int repositoryID) {
 		RepositoryCloneSettings settings = find(repositoryID);
 
+		remove(settings);
+	}
+
+	public void remove(RepositoryCloneSettings settings) {
 		ao.delete(settings);
 	}
 

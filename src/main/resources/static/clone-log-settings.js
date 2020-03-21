@@ -1,11 +1,9 @@
 define('plugin/log-on-clone/repository-settings', [
   'jquery',
-  'aui',
   'bitbucket/util/server',
   'bitbucket/util/navbuilder',
-  'bitbucket/util/state',
   'exports'
-], function($, AJS, server, nav, pageState, exports) {
+], function($, server, nav, exports) {
   function resourceUrl(resourceName) {
     return nav
       .rest('log-on-clone')
@@ -15,14 +13,18 @@ define('plugin/log-on-clone/repository-settings', [
   }
 
   var formSelector = '#log-on-clone-settings-form';
-  var inputSelector = 'input#url';
+  var urlInputSelector = 'input#url';
+  var enabledInputSelector = 'input#enabled';
+  var successTemplate = '<span class="button-success aui-icon aui-icon-small aui-iconfont-check">Done!</span>';
   var spinnerTemplate = '<div class="button-spinner"></div>';
 
   function init() {
     var $form = $(formSelector);
-    var $input = $(inputSelector);
+    var $urlInput = $(urlInputSelector);
+    var $enabledInput = $(enabledInputSelector);
     var $submit = $form.find('#log-on-clone-settings-form-submit');
     var $spinner;
+    var $success;
 
     function addSpinner() {
       $spinner = $(spinnerTemplate).insertAfter($submit);
@@ -34,50 +36,60 @@ define('plugin/log-on-clone/repository-settings', [
       $spinner = null;
     }
 
-    function setInputEnabled(enabled) {
+    function flashSuccess() {
+      $success = $(successTemplate).insertAfter($submit);
+      setTimeout(function() {
+        $success && $success.remove();
+        $success = null;
+      }, 1000);
+    }
+
+    function setEnabled($el, enabled) {
       if (enabled) {
-        $input.removeAttr('disabled').removeClass('disabled');
+        $el.removeAttr('disabled').removeClass('disabled');
       } else {
-        $input.attr('disabled', 'disabled').addClass('disabled');
+        $el.attr('disabled', 'disabled').addClass('disabled');
       }
     }
 
-    function setSubmitEnabled(enabled) {
-      if (enabled) {
-        $submit.removeAttr('disabled').removeClass('disabled');
-      } else {
-        $submit.attr('disabled', 'disabled').addClass('disabled');
-      }
+    function setUrlValue(value) {
+      $urlInput.val(value);
     }
 
-    function setValue(value) {
-      $input.val(value);
+    function setEnabledValue(value) {
+      $enabledInput.prop('checked', value);
     }
 
     $form.submit(function(event) {
       event.preventDefault();
 
       addSpinner();
-      setInputEnabled(false);
-      setSubmitEnabled(false);
+      setEnabled($urlInput, false);
+      setEnabled($enabledInput, false);
+      setEnabled($submit, false);
 
       server
         .rest({
           url: resourceUrl('settings'),
           type: 'POST',
           data: {
-            url: $input.val()
+            url: $urlInput.val(),
+            enabled: $enabledInput.prop('checked')
           }
         })
         .always(function() {
           removeSpinner();
-          setInputEnabled(true);
-          setSubmitEnabled(true);
+          flashSuccess();
+          setEnabled($urlInput, true);
+          setEnabled($enabledInput, true);
+          setEnabled($submit, true);
         });
     });
 
-    setInputEnabled(false);
-    setSubmitEnabled(false);
+    addSpinner();
+    setEnabled($urlInput, false);
+    setEnabled($enabledInput, false);
+    setEnabled($submit, false);
 
     server
       .rest({
@@ -86,11 +98,14 @@ define('plugin/log-on-clone/repository-settings', [
       })
       .then(function(response) {
         if (response) {
-          setValue(response.url);
+          setUrlValue(response.url);
+          setEnabledValue(response.enabled);
         }
 
-        setInputEnabled(true);
-        setSubmitEnabled(true);
+        removeSpinner();
+        setEnabled($urlInput, true);
+        setEnabled($enabledInput, true);
+        setEnabled($submit, true);
       });
   }
 
