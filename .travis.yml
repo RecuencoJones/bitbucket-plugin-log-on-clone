@@ -12,6 +12,6 @@ before_install:
   - export PATH=opt/atlassian-plugin-sdk/bin:opt/atlassian-plugin-sdk/apache-maven-*/bin:$PATH
   - atlas-version
 install:
-  - atlas-mvn install
+  - atlas-mvn install -DskipTests=true
 script:
   - atlas-package
