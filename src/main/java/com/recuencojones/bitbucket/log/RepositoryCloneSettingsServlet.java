@@ -5,18 +5,12 @@ import com.atlassian.bitbucket.repository.RepositoryService;
 
 import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
 
-import com.atlassian.sal.api.pluginsettings.PluginSettings;
-import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
-
 import com.atlassian.soy.renderer.SoyException;
 import com.atlassian.soy.renderer.SoyTemplateRenderer;
 import com.atlassian.webresource.api.assembler.PageBuilderService;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableMap;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 
@@ -29,11 +23,9 @@ import java.io.IOException;
 
 import java.util.Map;
 
-class RepositoryCloneSettingsServlet extends HttpServlet {
-	private static final Logger log = LoggerFactory.getLogger(RepositoryCloneSettingsServlet.class);
+public class RepositoryCloneSettingsServlet extends HttpServlet {
 
-	@ComponentImport
-	private final PluginSettingsFactory pluginSettingsFactory;
+	private static final long serialVersionUID = 1L;
 
 	@ComponentImport
 	private final RepositoryService repositoryService;
@@ -46,12 +38,10 @@ class RepositoryCloneSettingsServlet extends HttpServlet {
 
 	@Inject
 	public RepositoryCloneSettingsServlet(
-		final PluginSettingsFactory pluginSettingsFactory,
 		final RepositoryService repositoryService,
 		final SoyTemplateRenderer soyTemplateRenderer,
 		final PageBuilderService pageBuilderService
 	) {
-		this.pluginSettingsFactory = pluginSettingsFactory;
 		this.repositoryService = repositoryService;
 		this.soyTemplateRenderer = soyTemplateRenderer;
 		this.pageBuilderService = pageBuilderService;

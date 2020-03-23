@@ -1,3 +1,9 @@
-[*.java]
+root = true
+
+[{*.java,*.xml}]
 indent_style = tab
 indent_size = 4
+
+[{*.css,*.js,*.soy,*.yml}]
+indent_style = space
+indent_size = 2

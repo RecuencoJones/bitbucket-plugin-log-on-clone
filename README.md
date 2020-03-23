@@ -20,3 +20,10 @@ Useful resources:
 * [SAL 3.0 Upgrade Guide](https://developer.atlassian.com/server/framework/atlassian-sdk/sal-3-0-upgrade-guide/)
 * [Atlassian Community - REST requests from a custom plugin](https://community.atlassian.com/t5/Answers-Developer-Questions/What-is-the-recommended-way-to-send-REST-requests-from-a-custom/qaq-p/568227)
 * [Atlassian AUI - Soy template components](https://bitbucket.org/atlassian/aui/src/6a8e37f85a07952cc290503f54d85ff5bebc8783/src/soy/?at=5.10.x)
+
+Code samples:
+
+* https://bitbucket.org/atlassian/stash-git-ops-plugin/src/master/
+* https://bitbucket.org/atlassianlabs/stash-refchange-settings-plugin/src/master/
+* https://bitbucket.org/atlassian/bitbucket-code-coverage/src/master/code-coverage-plugin/
+* https://bitbucket.org/atlassian/stash-auto-unapprove-plugin/src/master/

@@ -53,6 +53,22 @@
   {call aui.form.fieldGroup}
     {param content}
       {call aui.form.label}
+        {param forField: 'enabled' /}
+        {param content: getText('bitbucket.web.repository.log-on-clone.setting.enabled.label') /}
+      {/call}
+      {call aui.form.input}
+        {param id: 'enabled' /}
+        {param name: 'enabled' /}
+        {param type: 'checkbox' /}
+      {/call}
+      {call aui.form.fieldDescription}
+        {param text: getText('bitbucket.web.repository.log-on-clone.setting.enabled.description') /}
+      {/call}
+    {/param}
+  {/call}
+  {call aui.form.fieldGroup}
+    {param content}
+      {call aui.form.label}
         {param isRequired: true /}
         {param forField: 'url' /}
         {param content: getText('bitbucket.web.repository.log-on-clone.setting.url.label') /}
@@ -64,6 +80,7 @@
         {param placeholderText: getText('bitbucket.web.repository.log-on-clone.setting.url.placeholder') /}
         {param extraAttributes}
           pattern="https?://.*"
+          required
         {/param}
       {/call}
       {call aui.form.fieldDescription}
