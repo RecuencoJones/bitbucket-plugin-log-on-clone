@@ -23,4 +23,7 @@ Useful resources:
 
 Code samples:
 
+* https://bitbucket.org/atlassian/stash-git-ops-plugin/src/master/
+* https://bitbucket.org/atlassianlabs/stash-refchange-settings-plugin/src/master/
 * https://bitbucket.org/atlassian/bitbucket-code-coverage/src/master/code-coverage-plugin/
+* https://bitbucket.org/atlassian/stash-auto-unapprove-plugin/src/master/
